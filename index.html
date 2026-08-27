@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speed Editor Remapper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div>
+          <h1>Speed Editor Remapper</h1>
+          <p class="tagline">Click a button on the picture, then choose a new job for it.</p>
+        </div>
+        <div class="profile-bar">
+          <label class="field">
+            <span>Layout</span>
+            <select id="profile-select" aria-label="Saved layout"></select>
+          </label>
+          <button type="button" class="ghost" id="rename-profile">Rename</button>
+          <button type="button" class="ghost" id="new-profile">New layout</button>
+          <button type="button" class="ghost" id="export-profile">Export</button>
+          <label class="ghost file-btn">
+            Import
+            <input id="import-profile" type="file" accept="application/json,.json" hidden />
+          </label>
+          <button type="button" class="danger" id="reset-all">Reset all</button>
+        </div>
+      </header>
+
+      <p class="status" id="status-line"></p>
+
+      <div class="workspace">
+        <section class="board-panel">
+          <div class="device" id="device" aria-label="DaVinci Resolve Speed Editor">
+            <div class="device-brand">
+              <span>DAVINCI RESOLVE SPEED EDITOR</span>
+              <span class="bmd-mark" aria-hidden="true">
+                <i></i><i></i><i></i>
+                Blackmagicdesign
+              </span>
+            </div>
+
+            <div class="device-body">
+              <div class="cluster cluster-edit" data-cluster="edit"></div>
+              <div class="cluster cluster-utility" data-cluster="utility"></div>
+              <div class="cluster cluster-right-top">
+                <div class="cluster cluster-transport" data-cluster="transport"></div>
+                <div class="cluster cluster-modes" data-cluster="modes"></div>
+              </div>
+              <div class="cluster cluster-left-bottom">
+                <div class="cluster cluster-marks" data-cluster="marks"></div>
+                <div class="cluster cluster-trim" data-cluster="trim"></div>
+              </div>
+              <div class="cluster cluster-multicam" data-cluster="multicam"></div>
+              <div class="cluster cluster-wheel" data-cluster="wheel"></div>
+            </div>
+          </div>
+
+          <details class="map-table">
+            <summary>Show every button as a list</summary>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Button</th>
+                    <th>Factory function</th>
+                    <th>Current mapping</th>
+                  </tr>
+                </thead>
+                <tbody id="map-table-body"></tbody>
+              </table>
+            </div>
+          </details>
+        </section>
+
+        <aside class="inspector" id="inspector">
+          <p class="inspector-empty" id="inspector-empty">
+            Click any button on the Speed Editor to see what it does, and to give it a new job.
+          </p>
+          <div class="inspector-body" id="inspector-body" hidden>
+            <p class="eyebrow" id="button-location"></p>
+            <h2 id="button-title"></h2>
+            <p class="factory-line" id="factory-line"></p>
+            <p class="description" id="button-description"></p>
+
+            <label class="field">
+              <span>What should this button do?</span>
+              <input id="action-search" type="search" placeholder="Search functions" />
+            </label>
+            <div class="action-list" id="action-list"></div>
+
+            <div class="hotkey-box" id="hotkey-box" hidden>
+              <p>Click the box, then press the shortcut you want.</p>
+              <button type="button" class="hotkey-capture" id="hotkey-capture">Click, then press keys</button>
+            </div>
+
+            <button type="button" class="ghost" id="reset-button">Reset this button to factory</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <script src="js/buttons.js"></script>
+    <script src="js/actions.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
